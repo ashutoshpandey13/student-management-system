@@ -182,5 +182,3 @@ if __name__ == '__main__':
     print("Starting Student API with in-memory storage...")
     print("Note: All data will be lost when the container stops!")
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-# Made with Bob

@@ -14,16 +14,23 @@ spec:
     spec:
       containers:
       - name: app
-        image: student-management:latest
+        image: student-management:1.0.0
         ports:
         - containerPort: 8080
         securityContext:
+          allowPrivilegeEscalation: false
           runAsNonRoot: true
-          runAsUser: 1000
-        resources:
-          limits:
-            cpu: "1"
-            memory: "512Mi"
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
+          runAsUser: 10001
+          runAsGroup: 10001
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+          seccompProfile:
+            type: RuntimeDefault
+      resources:
+        limits:
+          cpu: "1"
+          memory: "512Mi"
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
